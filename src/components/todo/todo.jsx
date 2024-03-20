@@ -1,49 +1,40 @@
-import styles from './todo.module.css';
-import { useState } from 'react';
 import { Button } from '../button/button.jsx';
-import { updateTodo, deleteTodo } from '../../api/index.js';
+import styles from './todo.module.css';
 
-export const Todo = ({ id, completed, title }) => {
-	const [isEditing, setIsEditing] = useState(false);
-	const [newTitle, setNewTitle] = useState(title);
-
-	const onTitleChange = ({ target }) => {
-		setNewTitle(target.value);
-	};
-
-	const onTodoEdit = () => {
-		setIsEditing(true);
-	};
-
-	const onTodoSave = () => {
-		setIsEditing(false);
-		updateTodo({ id, title: newTitle });
-	};
-
-	const onTodoRemove = () => {
-		deleteTodo(id);
-	};
-
+export const Todo = ({
+	completed,
+	title,
+	isEditing,
+	onEdit,
+	onTitleChange,
+	onCompletedChange,
+	onSave,
+	onRemove,
+}) => {
 	return (
 		<div className={styles.todo}>
 			<input
 				className={styles.checkbox}
 				type="checkbox"
 				checked={completed}
-				readOnly
+				onChange={({ target }) => onCompletedChange(target.checked)}
 			/>
 			<div className={styles.title}>
 				{isEditing ? (
-					<input type="text" value={newTitle} onChange={onTitleChange} />
+					<input
+						type="text"
+						value={title}
+						onChange={({ target }) => onTitleChange(target.value)}
+					/>
 				) : (
-					<div onClick={onTodoEdit}>{title}</div>
+					<div onClick={onEdit}>{title}</div>
 				)}
 			</div>
 			<div>
 				{isEditing ? (
-					<Button onClick={onTodoSave}>✎</Button>
+					<Button onClick={onSave}>✎</Button>
 				) : (
-					<Button onClick={onTodoRemove}>✖</Button>
+					<Button onClick={onRemove}>✖</Button>
 				)}
 			</div>
 		</div>

@@ -4,6 +4,10 @@
 	border-bottom: 1px solid #bbb;
 }
 
+.todo:last-child {
+	border-bottom: none;
+}
+
 .checkbox {
 	width: 20px;
 	height: 20px;
@@ -11,6 +15,6 @@
 }
 
 .title {
-	margin-right: 10px;
 	width: 100%;
+	margin-right: 10px;
 }
