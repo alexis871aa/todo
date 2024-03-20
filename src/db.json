@@ -1,0 +1,14 @@
+{
+	"todos": [
+		{
+			"id": 0,
+			"title": "Изучить главу по JavaScript",
+			"completed": false
+		},
+		{
+			"id": 1,
+			"title": "Доделать домашнее задание по JavaScript",
+			"completed": true
+		}
+	]
+}
